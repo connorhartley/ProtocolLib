@@ -113,7 +113,7 @@ public class ChannelInjector extends ByteToMessageDecoder implements Injector {
 	private VolatileField channelField;
 
 	// Known network markers
-	private Map<Object, NetworkMarker> packetMarker = new WeakHashMap<>();
+//	private Map<Object, NetworkMarker> packetMarker = new WeakHashMap<>();
 
 	/**
 	 * Indicate that this packet has been processed by event listeners.
@@ -713,14 +713,14 @@ public class ChannelInjector extends ByteToMessageDecoder implements Injector {
 
 	@Override
 	public NetworkMarker getMarker(Object packet) {
-		return packetMarker.get(packet);
+		return null;
 	}
 
 	@Override
 	public void saveMarker(Object packet, NetworkMarker marker) {
-		if (marker != null) {
-			packetMarker.put(packet, marker);
-		}
+//		if (marker != null) {
+//			packetMarker.put(packet, marker);
+//		}
 	}
 
 	@Override
