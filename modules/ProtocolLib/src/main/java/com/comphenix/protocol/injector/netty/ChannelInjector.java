@@ -25,6 +25,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.PacketType.Protocol;
+import com.comphenix.protocol.ProtocolConfig;
+import com.comphenix.protocol.ProtocolLib;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.error.Report;
 import com.comphenix.protocol.error.ReportType;
@@ -318,12 +320,16 @@ public class ChannelInjector extends ByteToMessageDecoder implements Injector {
 
 					// See if we've been instructed not to process packets
 					if (!scheduleProcessPackets.get()) {
-						NetworkMarker marker = getMarker(original);
+						if (ProtocolLibrary.getConfig().getLegacyPacketMarker()) {
+							NetworkMarker marker = getMarker(original);
 
-						if (marker != null)	{
-							PacketEvent result = new PacketEvent(ChannelInjector.class);
-							result.setNetworkMarker(marker);
-							return result;
+							if (marker != null)	{
+								PacketEvent result = new PacketEvent(ChannelInjector.class);
+								result.setNetworkMarker(marker);
+								return result;
+							} else {
+								return BYPASSED_PACKET;
+							}
 						} else {
 							return BYPASSED_PACKET;
 						}
@@ -364,7 +370,8 @@ public class ChannelInjector extends ByteToMessageDecoder implements Injector {
 	 * @return The resulting message/packet.
 	 */
 	private PacketEvent processSending(Object message) {
-		return channelListener.onPacketSending(ChannelInjector.this, message, getMarker(message));
+		return channelListener.onPacketSending(ChannelInjector.this, message, ProtocolLibrary.getConfig().getLegacyPacketMarker()
+				? getMarker(message) : null);
 	}
 
 	/**
@@ -633,7 +640,9 @@ public class ChannelInjector extends ByteToMessageDecoder implements Injector {
 
 	@Override
 	public void sendServerPacket(Object packet, NetworkMarker marker, boolean filtered) {
-		saveMarker(packet, marker);
+		if (ProtocolLibrary.getConfig().getLegacyPacketMarker()) {
+			saveMarker(packet, marker);
+		}
 
 		try {
 			scheduleProcessPackets.set(filtered);

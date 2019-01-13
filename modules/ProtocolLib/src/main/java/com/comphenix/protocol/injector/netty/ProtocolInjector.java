@@ -25,6 +25,8 @@ import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Set;
 
+import com.comphenix.protocol.ProtocolLib;
+import com.comphenix.protocol.ProtocolLibrary;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -445,9 +447,13 @@ public class ProtocolInjector implements ChannelListener {
 		return new AbstractPacketInjector(reveivedFilters) {
 			@Override
 			public PacketEvent packetRecieved(PacketContainer packet, Player client, byte[] buffered) {
-				NetworkMarker marker = buffered != null ? new NettyNetworkMarker(ConnectionSide.CLIENT_SIDE, buffered) : null;
-				injectionFactory.fromPlayer(client, ProtocolInjector.this).saveMarker(packet.getHandle(), marker);
-				return packetReceived(packet, client, marker);
+				if (ProtocolLibrary.getConfig().getLegacyPacketMarker()) {
+					NetworkMarker marker = buffered != null ? new NettyNetworkMarker(ConnectionSide.CLIENT_SIDE, buffered) : null;
+					injectionFactory.fromPlayer(client, ProtocolInjector.this).saveMarker(packet.getHandle(), marker);
+					return packetReceived(packet, client, marker);
+				}
+
+				return packetReceived(packet, client, null);
 			}
 
 			@Override

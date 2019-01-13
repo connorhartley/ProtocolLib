@@ -51,6 +51,7 @@ public class ProtocolConfig {
 	private static final String DEBUG_MODE_ENABLED = "debug";
 	private static final String DETAILED_ERROR = "detailed error";
 	private static final String INJECTION_METHOD = "injection method";
+	private static final String LEGACY_PACKET_MARKER = "legacy packet marker";
 
 	private static final String SCRIPT_ENGINE_NAME = "script engine";
 	private static final String SUPPRESSED_REPORTS = "suppressed reports";
@@ -476,6 +477,15 @@ public class ProtocolConfig {
 	 */
 	public void setInjectionMethod(PlayerInjectHooks hook) {
 		setConfig(global, INJECTION_METHOD, hook.name());
+		modCount++;
+	}
+
+	public boolean getLegacyPacketMarker() {
+		return getGlobalValue(LEGACY_PACKET_MARKER, false);
+	}
+
+	public void setLegacyPacketMarker(boolean value) {
+		setConfig(global, LEGACY_PACKET_MARKER, value);
 		modCount++;
 	}
 

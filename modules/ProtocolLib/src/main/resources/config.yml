@@ -17,7 +17,10 @@ global:
   
   # Override the starting injecting method
   injection method: 
-  
+
+  # Whether of not to enable the legacy packet marker lookups
+  legacy packet marker: false
+
   # Whether or not to enable the filter command
   debug: false
   
