@@ -481,7 +481,7 @@ public class ProtocolConfig {
 	}
 
 	public boolean getLegacyPacketMarker() {
-		return getGlobalValue(LEGACY_PACKET_MARKER, false);
+		return false;
 	}
 
 	public void setLegacyPacketMarker(boolean value) {
