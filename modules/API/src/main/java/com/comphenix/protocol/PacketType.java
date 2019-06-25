@@ -1151,9 +1151,18 @@ public class PacketType implements Serializable, Cloneable, Comparable<PacketTyp
 		return dynamic;
 	}
 
+	private int hashCode;
+
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(protocol, sender, currentId);
+		int hash = hashCode;
+		if (hash == 0) {
+			hash = protocol.hashCode();
+			hash = 31 * hash + sender.hashCode();
+			hash = 31 * hash + Integer.hashCode(currentId);
+			hashCode = hash;
+		}
+		return hash;
 	}
 
 	@Override
