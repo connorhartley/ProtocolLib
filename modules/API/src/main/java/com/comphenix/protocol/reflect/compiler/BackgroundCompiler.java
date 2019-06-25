@@ -17,9 +17,6 @@
 
 package com.comphenix.protocol.reflect.compiler;
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryPoolMXBean;
-import java.lang.management.MemoryUsage;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -57,11 +54,6 @@ public class BackgroundCompiler {
 	// How long to wait for a shutdown
 	public static final int SHUTDOWN_DELAY_MS = 2000;
 	
-	/**
-	 * The default fraction of perm gen space after which the background compiler will be disabled.
-	 */
-	public static final double DEFAULT_DISABLE_AT_PERM_GEN = 0.65;
-	
 	// The single background compiler we're using
 	private static BackgroundCompiler backgroundCompiler;
 	
@@ -75,8 +67,6 @@ public class BackgroundCompiler {
 	
 	private ExecutorService executor;
 	private ErrorReporter reporter;
-
-	private double disablePermGenFraction = DEFAULT_DISABLE_AT_PERM_GEN;
 	
 	/**
 	 * Retrieves the current background compiler.
@@ -166,10 +156,6 @@ public class BackgroundCompiler {
 	public <TKey> void scheduleCompilation(final StructureModifier<TKey> uncompiled, final CompileListener<TKey> listener) {
 		// Only schedule if we're enabled
 		if (enabled && !shuttingDown) {
-			// Check perm gen
-			if (getPermGenUsage() > disablePermGenFraction)
-				return;
-			
 			// Don't try to schedule anything
 			if (executor == null || executor.isShutdown())
 				return;
@@ -291,22 +277,6 @@ public class BackgroundCompiler {
 	}
 	
 	/**
-	 * Retrieve the current usage of the Perm Gen space in percentage.
-	 * @return Usage of the perm gen space.
-	 */
-	private double getPermGenUsage() {
-		for (MemoryPoolMXBean item : ManagementFactory.getMemoryPoolMXBeans()) {
-			if (item.getName().contains("Perm Gen")) {
-				MemoryUsage usage = item.getUsage();
-				return usage.getUsed() / (double) usage.getCommitted();
-			}
-		}
-		
-		// Unknown
-		return 0;
-	}
-	
-	/**
 	 * Clean up after ourselves using the default timeout.
 	 */
 	public void shutdownAll() {
@@ -347,22 +317,6 @@ public class BackgroundCompiler {
 		this.enabled = enabled;
 	}
 
-	/**
-	 * Retrieve the fraction of perm gen space used after which the background compiler will be disabled.
-	 * @return The fraction after which the background compiler is disabled.
-	 */
-	public double getDisablePermGenFraction() {
-		return disablePermGenFraction;
-	}
-	
-	/**
-	 * Set the fraction of perm gen space used after which the background compiler will be disabled.
-	 * @param fraction - the maximum use of perm gen space.
-	 */
-	public void setDisablePermGenFraction(double fraction) {
-		this.disablePermGenFraction = fraction;
-	}
-	
 	/**
 	 * Retrieve the current structure compiler.
 	 * @return Current structure compiler.
