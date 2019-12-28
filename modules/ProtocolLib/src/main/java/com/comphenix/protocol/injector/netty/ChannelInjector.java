@@ -129,11 +129,6 @@ public class ChannelInjector extends ByteToMessageDecoder implements Injector {
 	 */
 	private PacketEvent finalEvent;
 
-	/**
-	 * A flag set by the main thread to indiciate that a packet should not be processed.
-	 */
-	private final ThreadLocal<Boolean> scheduleProcessPackets = ThreadLocal.withInitial(() -> true);
-
 	// Other handlers
 	private ByteToMessageDecoder vanillaDecoder;
 	private MessageToByteEncoder<Object> vanillaEncoder;
@@ -318,23 +313,6 @@ public class ChannelInjector extends ByteToMessageDecoder implements Injector {
 					// Let the filters handle this packet
 					Object original = accessor.get(instance);
 
-					// See if we've been instructed not to process packets
-					if (!scheduleProcessPackets.get()) {
-						if (ProtocolLibrary.getConfig().getLegacyPacketMarker()) {
-							NetworkMarker marker = getMarker(original);
-
-							if (marker != null)	{
-								PacketEvent result = new PacketEvent(ChannelInjector.class);
-								result.setNetworkMarker(marker);
-								return result;
-							} else {
-								return BYPASSED_PACKET;
-							}
-						} else {
-							return BYPASSED_PACKET;
-						}
-					}
-
 					PacketEvent event = processSending(original);
 					if (event != null && !event.isCancelled()) {
 						Object changed = event.getPacket().getHandle();
@@ -411,11 +389,6 @@ public class ChannelInjector extends ByteToMessageDecoder implements Injector {
 		PacketEvent event = currentEvent;
 
 		try {
-			// Skip every kind of non-filtered packet
-			if (!scheduleProcessPackets.get()) {
-				return;
-			}
-
 			// This packet has not been seen by the main thread
 			if (event == null) {
 				Class<?> clazz = packet.getClass();
@@ -644,12 +617,8 @@ public class ChannelInjector extends ByteToMessageDecoder implements Injector {
 			saveMarker(packet, marker);
 		}
 
-		try {
-			scheduleProcessPackets.set(filtered);
-			invokeSendPacket(packet);
-		} finally {
-			scheduleProcessPackets.set(true);
-		}
+		// TODO: Correctly handle the `filtered` flag.
+		invokeSendPacket(packet);
 	}
 
 	/**
