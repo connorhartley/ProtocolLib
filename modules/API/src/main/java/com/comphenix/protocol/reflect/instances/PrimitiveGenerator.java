@@ -17,12 +17,12 @@
 
 package com.comphenix.protocol.reflect.instances;
 
+import com.google.common.base.Defaults;
+import com.google.common.primitives.Primitives;
+
 import java.lang.reflect.Array;
 
 import javax.annotation.Nullable;
-
-import com.google.common.base.Defaults;
-import com.google.common.primitives.Primitives;
 
 /**
  * Provides constructors for primtive types, wrappers, arrays and strings.

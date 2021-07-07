@@ -1,13 +1,5 @@
 package com.comphenix.protocol.wrappers;
 
-import java.lang.reflect.Constructor;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.annotation.Nonnull;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.reflect.FuzzyReflection;
@@ -19,6 +11,14 @@ import com.comphenix.protocol.wrappers.collection.ConvertedSet;
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
+
+import java.lang.reflect.Constructor;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.annotation.Nonnull;
 
 /**
  * Represents a single attribute sent in packet 44.

@@ -1,14 +1,5 @@
 package com.comphenix.protocol.concurrency;
 
-import java.util.AbstractMap;
-import java.util.AbstractSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
-import org.bukkit.entity.Player;
-
 import com.comphenix.protocol.utility.SafeCacheBuilder;
 import com.comphenix.protocol.utility.Util;
 import com.google.common.base.Function;
@@ -18,6 +9,14 @@ import com.google.common.cache.RemovalNotification;
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.UncheckedExecutionException;
+import org.bukkit.entity.Player;
+
+import java.util.AbstractMap;
+import java.util.AbstractSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Represents a concurrent player map.

@@ -1,9 +1,5 @@
 package com.comphenix.protocol.wrappers;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.PacketType.Protocol;
 import com.comphenix.protocol.ProtocolLogger;
@@ -11,9 +7,11 @@ import com.comphenix.protocol.reflect.EquivalentConverter;
 import com.comphenix.protocol.reflect.FuzzyReflection;
 import com.comphenix.protocol.utility.MinecraftReflection;
 import com.google.common.collect.Maps;
-
-import org.bukkit.EntityEffect;
 import org.bukkit.GameMode;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * Represents a generic enum converter.

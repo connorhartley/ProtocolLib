@@ -16,9 +16,9 @@
  */
 package com.comphenix.protocol.wrappers;
 
-import java.util.function.Function;
-
 import com.comphenix.protocol.reflect.EquivalentConverter;
+
+import java.util.function.Function;
 
 /**
  * Utility class for converters

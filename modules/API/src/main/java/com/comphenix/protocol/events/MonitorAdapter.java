@@ -17,15 +17,14 @@
 
 package com.comphenix.protocol.events;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.bukkit.plugin.Plugin;
-
 import com.comphenix.protocol.Packets;
 import com.comphenix.protocol.injector.GamePhase;
 import com.comphenix.protocol.injector.packet.PacketRegistry;
 import com.comphenix.protocol.reflect.FieldAccessException;
+import org.bukkit.plugin.Plugin;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents a listener that is notified of every sent and received packet.

@@ -17,14 +17,12 @@
 
 package com.comphenix.protocol.reflect.compiler;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.error.Report;
+import com.comphenix.protocol.error.ReportType;
+import com.comphenix.protocol.reflect.StructureModifier;
+import com.google.common.base.Objects;
+import com.google.common.primitives.Primitives;
 import net.sf.cglib.asm.$ClassWriter;
 import net.sf.cglib.asm.$FieldVisitor;
 import net.sf.cglib.asm.$Label;
@@ -32,12 +30,13 @@ import net.sf.cglib.asm.$MethodVisitor;
 import net.sf.cglib.asm.$Opcodes;
 import net.sf.cglib.asm.$Type;
 
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.error.Report;
-import com.comphenix.protocol.error.ReportType;
-import com.comphenix.protocol.reflect.StructureModifier;
-import com.google.common.base.Objects;
-import com.google.common.primitives.Primitives;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 // public class CompiledStructureModifierPacket20<TField> extends CompiledStructureModifier<TField> {
 //

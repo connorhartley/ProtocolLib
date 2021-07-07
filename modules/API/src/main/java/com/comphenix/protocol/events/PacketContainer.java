@@ -17,15 +17,6 @@
 
 package com.comphenix.protocol.events;
 
-import java.io.*;
-import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.concurrent.ConcurrentMap;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.PacketType.Protocol;
 import com.comphenix.protocol.injector.StructureCache;
@@ -33,15 +24,57 @@ import com.comphenix.protocol.reflect.EquivalentConverter;
 import com.comphenix.protocol.reflect.FuzzyReflection;
 import com.comphenix.protocol.reflect.ObjectWriter;
 import com.comphenix.protocol.reflect.StructureModifier;
-import com.comphenix.protocol.reflect.cloning.*;
+import com.comphenix.protocol.reflect.cloning.AggregateCloner;
 import com.comphenix.protocol.reflect.cloning.AggregateCloner.BuilderParameters;
+import com.comphenix.protocol.reflect.cloning.BukkitCloner;
+import com.comphenix.protocol.reflect.cloning.Cloner;
+import com.comphenix.protocol.reflect.cloning.CollectionCloner;
+import com.comphenix.protocol.reflect.cloning.FieldCloner;
+import com.comphenix.protocol.reflect.cloning.GuavaOptionalCloner;
+import com.comphenix.protocol.reflect.cloning.ImmutableDetector;
+import com.comphenix.protocol.reflect.cloning.JavaOptionalCloner;
+import com.comphenix.protocol.reflect.cloning.SerializableCloner;
 import com.comphenix.protocol.reflect.fuzzy.FuzzyMethodContract;
 import com.comphenix.protocol.reflect.instances.DefaultInstances;
 import com.comphenix.protocol.utility.MinecraftMethods;
 import com.comphenix.protocol.utility.MinecraftReflection;
 import com.comphenix.protocol.utility.StreamSerializer;
-import com.comphenix.protocol.wrappers.*;
-import com.comphenix.protocol.wrappers.EnumWrappers.*;
+import com.comphenix.protocol.wrappers.BlockPosition;
+import com.comphenix.protocol.wrappers.BukkitConverters;
+import com.comphenix.protocol.wrappers.ChunkCoordIntPair;
+import com.comphenix.protocol.wrappers.ChunkPosition;
+import com.comphenix.protocol.wrappers.Converters;
+import com.comphenix.protocol.wrappers.EnumWrappers;
+import com.comphenix.protocol.wrappers.EnumWrappers.ChatType;
+import com.comphenix.protocol.wrappers.EnumWrappers.ChatVisibility;
+import com.comphenix.protocol.wrappers.EnumWrappers.ClientCommand;
+import com.comphenix.protocol.wrappers.EnumWrappers.CombatEventType;
+import com.comphenix.protocol.wrappers.EnumWrappers.Difficulty;
+import com.comphenix.protocol.wrappers.EnumWrappers.Direction;
+import com.comphenix.protocol.wrappers.EnumWrappers.EntityUseAction;
+import com.comphenix.protocol.wrappers.EnumWrappers.EnumConverter;
+import com.comphenix.protocol.wrappers.EnumWrappers.Hand;
+import com.comphenix.protocol.wrappers.EnumWrappers.ItemSlot;
+import com.comphenix.protocol.wrappers.EnumWrappers.NativeGameMode;
+import com.comphenix.protocol.wrappers.EnumWrappers.PlayerAction;
+import com.comphenix.protocol.wrappers.EnumWrappers.PlayerDigType;
+import com.comphenix.protocol.wrappers.EnumWrappers.PlayerInfoAction;
+import com.comphenix.protocol.wrappers.EnumWrappers.ResourcePackStatus;
+import com.comphenix.protocol.wrappers.EnumWrappers.ScoreboardAction;
+import com.comphenix.protocol.wrappers.EnumWrappers.SoundCategory;
+import com.comphenix.protocol.wrappers.EnumWrappers.TitleAction;
+import com.comphenix.protocol.wrappers.EnumWrappers.WorldBorderAction;
+import com.comphenix.protocol.wrappers.MinecraftKey;
+import com.comphenix.protocol.wrappers.MultiBlockChangeInfo;
+import com.comphenix.protocol.wrappers.PlayerInfoData;
+import com.comphenix.protocol.wrappers.WrappedAttribute;
+import com.comphenix.protocol.wrappers.WrappedBlockData;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import com.comphenix.protocol.wrappers.WrappedDataWatcher;
+import com.comphenix.protocol.wrappers.WrappedGameProfile;
+import com.comphenix.protocol.wrappers.WrappedServerPing;
+import com.comphenix.protocol.wrappers.WrappedStatistic;
+import com.comphenix.protocol.wrappers.WrappedWatchableObject;
 import com.comphenix.protocol.wrappers.nbt.NbtBase;
 import com.comphenix.protocol.wrappers.nbt.NbtCompound;
 import com.comphenix.protocol.wrappers.nbt.NbtFactory;
@@ -49,10 +82,8 @@ import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.UnpooledByteBufAllocator;
-
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -61,6 +92,28 @@ import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
+
+import java.io.DataInput;
+import java.io.DataInputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentMap;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Represents a Minecraft packet indirectly.
@@ -840,17 +893,6 @@ public class PacketContainer implements Serializable {
     	return structureModifier.withType(
     			EnumWrappers.getParticleClass(),
 			    EnumWrappers.getParticleConverter());
-    }
-
-	/**
-	 * Retrieve a read/write structure for ParticleParams in 1.13
-	 * @return A modifier for ParticleParam fields.
-	 */
-	public StructureModifier<WrappedParticle> getNewParticles() {
-		return structureModifier.withType(
-				MinecraftReflection.getMinecraftClass("ParticleParam"),
-				BukkitConverters.getParticleConverter()
-		);
     }
 
     /**

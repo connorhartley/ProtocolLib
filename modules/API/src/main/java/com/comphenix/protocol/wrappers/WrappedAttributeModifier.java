@@ -1,16 +1,17 @@
 package com.comphenix.protocol.wrappers;
 
-import java.lang.reflect.Constructor;
-import java.util.UUID;
-import java.util.function.Supplier;
-import javax.annotation.Nonnull;
-
 import com.comphenix.protocol.reflect.FuzzyReflection;
 import com.comphenix.protocol.reflect.StructureModifier;
 import com.comphenix.protocol.reflect.fuzzy.FuzzyMethodContract;
 import com.comphenix.protocol.utility.MinecraftReflection;
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
+
+import java.lang.reflect.Constructor;
+import java.util.UUID;
+import java.util.function.Supplier;
+
+import javax.annotation.Nonnull;
 
 /**
  * Represents a wrapper around a AttributeModifier.

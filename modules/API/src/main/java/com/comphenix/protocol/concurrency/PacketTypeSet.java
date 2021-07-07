@@ -1,13 +1,13 @@
 package com.comphenix.protocol.concurrency;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.injector.packet.PacketRegistry;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
 
 /**
  * Represents a concurrent set of packet types.

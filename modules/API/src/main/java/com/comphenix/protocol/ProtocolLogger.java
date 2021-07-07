@@ -16,10 +16,10 @@
  */
 package com.comphenix.protocol;
 
+import org.bukkit.plugin.Plugin;
+
 import java.text.MessageFormat;
 import java.util.logging.Level;
-
-import org.bukkit.plugin.Plugin;
 
 /**
  * @author dmulloy2

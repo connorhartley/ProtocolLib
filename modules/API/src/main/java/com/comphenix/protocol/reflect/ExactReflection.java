@@ -1,13 +1,13 @@
 package com.comphenix.protocol.reflect;
 
+import com.google.common.base.Preconditions;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 
 import javax.annotation.Nonnull;
-
-import com.google.common.base.Preconditions;
 
 public class ExactReflection {
 	// The class we're actually representing

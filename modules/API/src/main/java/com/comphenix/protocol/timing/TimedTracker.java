@@ -1,10 +1,10 @@
 package com.comphenix.protocol.timing;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.comphenix.protocol.PacketType;
 import com.google.common.collect.Maps;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Tracks the invocation time for a particular plugin against a list of packets.

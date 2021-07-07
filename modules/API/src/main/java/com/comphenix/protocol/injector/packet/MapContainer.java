@@ -1,9 +1,10 @@
 package com.comphenix.protocol.injector.packet;
 
-import java.lang.reflect.Field;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.comphenix.protocol.reflect.FieldUtils;
-import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.lang.reflect.Field;
 
 /**
  * Represents a class that can detect if a map has changed.

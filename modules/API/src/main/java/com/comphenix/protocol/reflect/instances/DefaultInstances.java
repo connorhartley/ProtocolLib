@@ -17,18 +17,17 @@
 
 package com.comphenix.protocol.reflect.instances;
 
+import com.comphenix.protocol.ProtocolLogger;
+import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
+import net.sf.cglib.proxy.Enhancer;
+
 import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 
 import javax.annotation.Nullable;
-
-import net.sf.cglib.proxy.Enhancer;
-
-import com.comphenix.protocol.ProtocolLogger;
-import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableList;
 
 /**
  * Used to construct default instances of any type.

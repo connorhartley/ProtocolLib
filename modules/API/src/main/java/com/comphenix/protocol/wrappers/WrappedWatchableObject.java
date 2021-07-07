@@ -18,8 +18,6 @@ package com.comphenix.protocol.wrappers;
 
 import static com.comphenix.protocol.utility.MinecraftReflection.is;
 
-import org.bukkit.inventory.ItemStack;
-
 import com.comphenix.protocol.reflect.StructureModifier;
 import com.comphenix.protocol.reflect.accessors.Accessors;
 import com.comphenix.protocol.reflect.accessors.ConstructorAccessor;
@@ -27,10 +25,10 @@ import com.comphenix.protocol.utility.MinecraftReflection;
 import com.comphenix.protocol.wrappers.EnumWrappers.Direction;
 import com.comphenix.protocol.wrappers.WrappedDataWatcher.Serializer;
 import com.comphenix.protocol.wrappers.WrappedDataWatcher.WrappedDataWatcherObject;
-import com.comphenix.protocol.wrappers.nbt.NbtBase;
 import com.comphenix.protocol.wrappers.nbt.NbtCompound;
 import com.comphenix.protocol.wrappers.nbt.NbtFactory;
 import com.google.common.base.Optional;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Represents a DataWatcher Item in 1.8 thru 1.10.

@@ -1,14 +1,14 @@
 package com.comphenix.protocol.reflect.fuzzy;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Maps;
+
 import java.lang.reflect.Member;
 import java.lang.reflect.Modifier;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nonnull;
-
-import com.google.common.base.Objects;
-import com.google.common.collect.Maps;
 
 /**
  * Represents a matcher that matches members.

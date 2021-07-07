@@ -17,14 +17,13 @@
 
 package com.comphenix.protocol;
 
-import java.lang.reflect.InvocationTargetException;
-
-import org.bukkit.entity.Player;
-
 import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.NetworkMarker;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.injector.netty.WirePacket;
+import org.bukkit.entity.Player;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Represents a object capable of sending or receiving packets.

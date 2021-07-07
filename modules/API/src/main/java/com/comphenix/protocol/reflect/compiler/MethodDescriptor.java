@@ -17,10 +17,10 @@
 
 package com.comphenix.protocol.reflect.compiler;
 
+import net.sf.cglib.asm.$Type;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import net.sf.cglib.asm.$Type;
 
 /**
  * Represents a method.

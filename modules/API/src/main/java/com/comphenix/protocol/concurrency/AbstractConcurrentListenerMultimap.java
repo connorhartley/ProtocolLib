@@ -17,17 +17,17 @@
 
 package com.comphenix.protocol.concurrency;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.ListeningWhitelist;
+import com.comphenix.protocol.injector.PrioritizedListener;
+import com.google.common.collect.Iterables;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.events.ListeningWhitelist;
-import com.comphenix.protocol.injector.PrioritizedListener;
-import com.google.common.collect.Iterables;
 
 /**
  * A thread-safe implementation of a listener multimap.

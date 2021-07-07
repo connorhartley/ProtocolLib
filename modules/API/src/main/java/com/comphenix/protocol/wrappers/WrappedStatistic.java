@@ -1,7 +1,5 @@
 package com.comphenix.protocol.wrappers;
 
-import java.util.Map;
-
 import com.comphenix.protocol.reflect.FuzzyReflection;
 import com.comphenix.protocol.reflect.accessors.Accessors;
 import com.comphenix.protocol.reflect.accessors.FieldAccessor;
@@ -9,6 +7,8 @@ import com.comphenix.protocol.reflect.accessors.MethodAccessor;
 import com.comphenix.protocol.utility.MinecraftReflection;
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
+
+import java.util.Map;
 
 /**
  * Represents a Minecraft statistics.

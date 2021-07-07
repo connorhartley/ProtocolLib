@@ -1,5 +1,18 @@
 package com.comphenix.protocol;
 
+import com.comphenix.protocol.PacketTypeLookup.ClassLookup;
+import com.comphenix.protocol.events.ConnectionSide;
+import com.comphenix.protocol.injector.packet.PacketRegistry;
+import com.comphenix.protocol.utility.MinecraftReflection;
+import com.comphenix.protocol.utility.MinecraftVersion;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.util.concurrent.Futures;
+import org.apache.commons.lang.WordUtils;
+import org.bukkit.Bukkit;
+
 import java.io.Serializable;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,21 +26,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
-
-import org.apache.commons.lang.WordUtils;
-import org.bukkit.Bukkit;
-
-import com.comphenix.protocol.PacketTypeLookup.ClassLookup;
-import com.comphenix.protocol.events.ConnectionSide;
-import com.comphenix.protocol.injector.packet.PacketRegistry;
-import com.comphenix.protocol.utility.MinecraftReflection;
-import com.comphenix.protocol.utility.MinecraftVersion;
-import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.ComparisonChain;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-import com.google.common.util.concurrent.Futures;
 
 /**
  * Represents the type of a packet in a specific protocol.

@@ -16,15 +16,15 @@
  */
 package com.comphenix.protocol.wrappers;
 
+import com.comphenix.protocol.reflect.EquivalentConverter;
+import com.comphenix.protocol.utility.MinecraftReflection;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
-import com.comphenix.protocol.reflect.EquivalentConverter;
-import com.comphenix.protocol.utility.MinecraftReflection;
 
 /**
  * Automatically wraps an internal NMS class to a non-versioned, deofbuscated class.

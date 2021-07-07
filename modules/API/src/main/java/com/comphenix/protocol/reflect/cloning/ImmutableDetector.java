@@ -17,6 +17,12 @@
 
 package com.comphenix.protocol.reflect.cloning;
 
+import com.comphenix.protocol.utility.MinecraftReflection;
+import com.comphenix.protocol.utility.MinecraftVersion;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
+import com.google.common.primitives.Primitives;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.Inet4Address;
@@ -31,12 +37,6 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import javax.crypto.SecretKey;
-
-import com.comphenix.protocol.utility.MinecraftReflection;
-import com.comphenix.protocol.utility.MinecraftVersion;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
-import com.google.common.primitives.Primitives;
 
 /**
  * Detects classes that are immutable, and thus doesn't require cloning.

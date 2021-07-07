@@ -17,6 +17,18 @@
 
 package com.comphenix.protocol.error;
 
+import com.comphenix.protocol.ProtocolLogger;
+import com.comphenix.protocol.collections.ExpireHashMap;
+import com.comphenix.protocol.error.Report.ReportBuilder;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.reflect.PrettyPrinter;
+import com.google.common.base.Preconditions;
+import com.google.common.primitives.Primitives;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.ref.WeakReference;
@@ -29,19 +41,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-
-import com.comphenix.protocol.ProtocolLogger;
-import com.comphenix.protocol.collections.ExpireHashMap;
-import com.comphenix.protocol.error.Report.ReportBuilder;
-import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.reflect.PrettyPrinter;
-import com.google.common.base.Preconditions;
-import com.google.common.primitives.Primitives;
 
 /**
  * Internal class used to handle exceptions.

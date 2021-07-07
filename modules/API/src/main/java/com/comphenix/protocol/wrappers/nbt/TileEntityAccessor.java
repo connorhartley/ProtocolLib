@@ -1,9 +1,5 @@
 package com.comphenix.protocol.wrappers.nbt;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.concurrent.ConcurrentMap;
-
 import com.comphenix.protocol.reflect.FuzzyReflection;
 import com.comphenix.protocol.reflect.accessors.Accessors;
 import com.comphenix.protocol.reflect.accessors.FieldAccessor;
@@ -11,7 +7,6 @@ import com.comphenix.protocol.reflect.accessors.MethodAccessor;
 import com.comphenix.protocol.utility.EnhancerFactory;
 import com.comphenix.protocol.utility.MinecraftReflection;
 import com.google.common.collect.Maps;
-
 import net.sf.cglib.asm.$ClassReader;
 import net.sf.cglib.asm.$ClassVisitor;
 import net.sf.cglib.asm.$MethodVisitor;
@@ -19,8 +14,11 @@ import net.sf.cglib.asm.$Opcodes;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
-
 import org.bukkit.block.BlockState;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Manipulate tile entities.

@@ -16,13 +16,13 @@
  */
 package com.comphenix.protocol.wrappers;
 
-import java.lang.reflect.Constructor;
-
 import com.comphenix.protocol.reflect.EquivalentConverter;
 import com.comphenix.protocol.reflect.StructureModifier;
 import com.comphenix.protocol.utility.MinecraftReflection;
 import com.comphenix.protocol.wrappers.EnumWrappers.NativeGameMode;
 import com.google.common.base.Objects;
+
+import java.lang.reflect.Constructor;
 
 /**
  * Represents an immutable PlayerInfoData in the PLAYER_INFO packet.

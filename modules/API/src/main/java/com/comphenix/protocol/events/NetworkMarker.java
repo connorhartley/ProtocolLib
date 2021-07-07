@@ -1,5 +1,15 @@
 package com.comphenix.protocol.events;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.utility.ByteBufferInputStream;
+import com.comphenix.protocol.utility.MinecraftReflection;
+import com.comphenix.protocol.utility.StreamSerializer;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.google.common.primitives.Ints;
+import org.bukkit.entity.Player;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -11,17 +21,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 import javax.annotation.Nonnull;
-
-import org.bukkit.entity.Player;
-
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.utility.ByteBufferInputStream;
-import com.comphenix.protocol.utility.MinecraftReflection;
-import com.comphenix.protocol.utility.StreamSerializer;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.primitives.Ints;
 
 /**
  * Marker containing the serialized packet data seen from the network,

@@ -1,8 +1,8 @@
 package com.comphenix.protocol.utility;
 
-import java.io.IOException;
-
 import com.google.common.base.Preconditions;
+
+import java.io.IOException;
 
 /**
  * Represents a class for printing hexadecimal dumps.

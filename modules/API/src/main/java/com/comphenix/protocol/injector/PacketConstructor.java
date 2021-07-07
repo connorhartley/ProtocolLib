@@ -17,10 +17,6 @@
 
 package com.comphenix.protocol.injector;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.error.RethrowErrorReporter;
 import com.comphenix.protocol.events.PacketContainer;
@@ -30,6 +26,10 @@ import com.comphenix.protocol.wrappers.BukkitConverters;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Primitives;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 /**
  * A packet constructor that uses an internal Minecraft.

@@ -1,5 +1,7 @@
 package com.comphenix.protocol.reflect;
 
+import com.google.common.collect.Lists;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.GenericDeclaration;
@@ -9,8 +11,6 @@ import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 /**
  * Represents a method or a constructor.

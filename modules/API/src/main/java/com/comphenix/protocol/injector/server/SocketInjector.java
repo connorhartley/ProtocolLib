@@ -1,12 +1,11 @@
 package com.comphenix.protocol.injector.server;
 
+import com.comphenix.protocol.events.NetworkMarker;
+import org.bukkit.entity.Player;
+
 import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
 import java.net.SocketAddress;
-
-import com.comphenix.protocol.events.NetworkMarker;
-
-import org.bukkit.entity.Player;
 
 /**
  * Represents an injector that only gives access to a player's socket.

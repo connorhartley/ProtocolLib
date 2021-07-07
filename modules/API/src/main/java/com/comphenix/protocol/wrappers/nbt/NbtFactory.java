@@ -17,6 +17,19 @@
 
 package com.comphenix.protocol.wrappers.nbt;
 
+import com.comphenix.protocol.reflect.FieldAccessException;
+import com.comphenix.protocol.reflect.FuzzyReflection;
+import com.comphenix.protocol.reflect.StructureModifier;
+import com.comphenix.protocol.utility.MinecraftReflection;
+import com.comphenix.protocol.wrappers.BukkitConverters;
+import com.comphenix.protocol.wrappers.nbt.io.NbtBinarySerializer;
+import com.google.common.base.Preconditions;
+import com.google.common.io.Closeables;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.inventory.ItemStack;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
@@ -31,20 +44,6 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import javax.annotation.Nonnull;
-
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.inventory.ItemStack;
-
-import com.comphenix.protocol.reflect.FieldAccessException;
-import com.comphenix.protocol.reflect.FuzzyReflection;
-import com.comphenix.protocol.reflect.StructureModifier;
-import com.comphenix.protocol.utility.MinecraftReflection;
-import com.comphenix.protocol.wrappers.BukkitConverters;
-import com.comphenix.protocol.wrappers.nbt.io.NbtBinarySerializer;
-import com.google.common.base.Preconditions;
-import com.google.common.io.Closeables;
 
 /**
  * Factory methods for creating NBT elements, lists and compounds.

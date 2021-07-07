@@ -16,17 +16,16 @@
  */
 package com.comphenix.protocol.injector.netty;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLogger;
 import com.comphenix.protocol.PacketType.Protocol;
 import com.comphenix.protocol.PacketType.Sender;
-import com.comphenix.protocol.injector.netty.ProtocolRegistry;
+import com.comphenix.protocol.ProtocolLogger;
 import com.comphenix.protocol.injector.packet.MapContainer;
 import com.comphenix.protocol.reflect.StructureModifier;
 import com.google.common.collect.Maps;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * @author dmulloy2

@@ -17,15 +17,6 @@
 
 package com.comphenix.protocol.async;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.Executor;
-import java.util.concurrent.PriorityBlockingQueue;
-
-import org.bukkit.entity.Player;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.error.Report;
@@ -33,6 +24,14 @@ import com.comphenix.protocol.error.ReportType;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.injector.PlayerLoggedOutException;
 import com.comphenix.protocol.reflect.FieldAccessException;
+import org.bukkit.entity.Player;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.PriorityBlockingQueue;
 
 /**
  * Represents packets ready to be transmitted to a client.

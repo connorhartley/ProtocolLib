@@ -1,5 +1,12 @@
 package com.comphenix.protocol.collections;
 
+import com.google.common.base.Function;
+import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
+import com.google.common.base.Ticker;
+import com.google.common.collect.Maps;
+import com.google.common.primitives.Longs;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,13 +14,6 @@ import java.util.Map.Entry;
 import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
-import com.google.common.base.Function;
-import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
-import com.google.common.base.Ticker;
-import com.google.common.collect.Maps;
-import com.google.common.primitives.Longs;
 
 /**
  * Represents a hash map where each association may expire after a given time has elapsed.

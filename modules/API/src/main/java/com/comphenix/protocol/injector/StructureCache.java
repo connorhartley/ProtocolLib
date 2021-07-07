@@ -17,11 +17,6 @@
 
 package com.comphenix.protocol.injector;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.injector.packet.PacketRegistry;
 import com.comphenix.protocol.reflect.StructureModifier;
@@ -30,6 +25,11 @@ import com.comphenix.protocol.reflect.compiler.CompileListener;
 import com.comphenix.protocol.reflect.compiler.CompiledStructureModifier;
 import com.comphenix.protocol.reflect.instances.DefaultInstances;
 import com.comphenix.protocol.utility.MinecraftReflection;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Caches structure modifiers.

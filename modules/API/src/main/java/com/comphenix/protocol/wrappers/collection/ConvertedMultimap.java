@@ -1,5 +1,11 @@
 package com.comphenix.protocol.wrappers.collection;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multiset;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
@@ -7,12 +13,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.Nullable;
-
-import com.google.common.base.Joiner;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multiset;
 
 /**
  * Represents a multimap that wraps another multimap by transforming the entries that are going in and out.

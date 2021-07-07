@@ -16,14 +16,10 @@
  */
 package com.comphenix.protocol.wrappers;
 
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
+import static com.comphenix.protocol.utility.MinecraftReflection.getCraftBukkitClass;
+import static com.comphenix.protocol.utility.MinecraftReflection.getMinecraftClass;
+import static com.comphenix.protocol.wrappers.Converters.handle;
+import static com.comphenix.protocol.wrappers.Converters.ignoreNull;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -46,7 +42,6 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -58,8 +53,20 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import static com.comphenix.protocol.utility.MinecraftReflection.*;
-import static com.comphenix.protocol.wrappers.Converters.*;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Contains several useful equivalent converters for normal Bukkit types.
@@ -927,10 +934,6 @@ public class BukkitConverters {
 				return soundIndex.get(key);
 			}
 		});
-	}
-
-	public static EquivalentConverter<WrappedParticle> getParticleConverter() {
-		return ignoreNull(handle(WrappedParticle::getHandle, WrappedParticle::fromHandle));
 	}
 
 	public static EquivalentConverter<Advancement> getAdvancementConverter() {
